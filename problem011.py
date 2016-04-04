@@ -26,6 +26,8 @@ The product of these numbers is 26 x 63 x 78 x 14 = 1788696.
 
 What is the greatest product of four adjacent numbers in the same direction (up, down, left, right, or diagonally) in the 20x20 grid?
 '''
+    
+from utils import arrProd
 
 digits = """08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
 49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00
@@ -49,5 +51,25 @@ digits = """08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
 01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48"""
 
 GRID_SIZE = 20
-
+NUM_ADJ = 4
 grid = map(lambda x: x.split(" "), digits.split("\n"))
+
+def toInt(myList):
+    return map(int, myList)
+grid = map(toInt,grid)
+
+maxProd = 0
+bestNums = []
+
+def checkMax(n):
+    prod = arrProd(n)
+    print n
+    if prod > maxProd:
+        maxProd = prod
+        bestNums = grid[i:i+NUM_ADJ-1][j:j+NUM_ADJ-1]
+    return
+
+for i in range(1,GRID_SIZE):
+    for j in range(1, GRID_SIZE):
+        print grid
+        
